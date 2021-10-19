@@ -24,6 +24,24 @@ namespace UnityEngine
     [HelpURL("https://docs.unity3d.com/Packages/com.unity.2d.tilemap.extras@latest/index.html?subfolder=/manual/RuleTile.html")]
     public class IsometricRuleTile : RuleTile
     {
-        // This has no differences with the RuleTile
+        /// <summary>
+        /// Isometric tile mirror in diagonal axis
+        /// </summary>
+        public override Vector3Int GetMirroredPosition(Vector3Int position, bool mirrorX, bool mirrorY)
+        {
+            if (mirrorX)
+            {
+                int tempx = position.x;
+                position.x = position.y;
+                position.y = tempx;
+            }
+            if (mirrorY)
+            {
+                int tempx = position.x;
+                position.x = -position.y;
+                position.y = -tempx;
+            }
+            return position;
+        }
     }
 }
